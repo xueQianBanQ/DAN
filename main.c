@@ -1,60 +1,83 @@
 #include <REGX52.H>
-typedef unsigned char  u8;
-typedef unsigned int  u16;
 	
-void delay_10us(u16 s)
+void Delay (unsigned int xms)  // 延迟1s
 {
-	while(s--);
-	
-}
-	
-//void main()
-//{
-//	while(1)
-//	{
-//		if (P3_1 == 0)
-//		{
-//			P2_0 = 0;
-//		}
-//		else
-//		{
-//			P2_0 = 1;
-//		}
-//	}
-//	
-//}
-
-////按一次独立按键LED灯变一次
-//void main()
-//{
-//	P2_0 = 0;
-//	while(1)
-//	{
-//		if(P3_1 == 0)
-//		{
-//			delay_10us(2000);//20ms = 100 * 10us * 20 = 2000
-//			while(P3_1 == 0) ;//取消按独立按钮时的影响
-//			delay_10us(2000);	
-//			P2_0 = ~P2_0;
-//		}
-//	}
-//}
-
-//LED灯按二进制变化
-void main()
-{
-	unsigned char number = 0;
-	while(1)
+	unsigned char i, j;
+	while(xms--)
 	{
-		if(P3_1 == 0)
+		i = 2;
+		j = 239;
+		do
 		{
-			delay_10us(2000);
-			while(P3_1 == 0);
-			delay_10us(2000);
-			number++;
-			P2 = ~number;
-			
-		}
+			while(--j);
+		}while(--i);
 	}
 }
-	
+
+
+void Delay1ms(unsigned int xms)		//@11.0592MHz
+{
+	unsigned char i, j;
+	while(xms--)
+    {
+
+	i = 2;
+	j = 199;
+	do
+	{
+		while (--j);
+	} while (--i);
+}
+}
+
+
+unsigned char Nixietable[10] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f };
+
+void Nixietube(unsigned char Location, unsigned char Number)
+{
+	Location = 8 - Location;
+	P2_2 = Location % 2;
+	P2_3 = Location / 2 % 2;
+	P2_4 = Location / 2 / 2 % 2;
+	P0 = Nixietable[Number]; 
+	Delay(1);
+	P0 = 0x00;
+}
+
+//int main()
+
+//{
+//	while(1)
+//	{
+//		
+//		Nixietube(1, 1);
+//		Delay1ms(200);
+//		Nixietube(2, 2);
+//		Delay1ms(200);
+//		Nixietube(3, 3);
+//		Delay1ms(200);
+//	}
+//	return 0;
+
+//}
+
+
+int main()
+
+{
+	while(1)
+	{
+		
+		Nixietube(1, 5);
+		Nixietube(2, 2);
+		Nixietube(3, 0);
+		Nixietube(4, 1);
+		Nixietube(5, 3);
+		Nixietube(6, 1);
+		Nixietube(7, 4);
+	}
+	return 0;
+
+}
+
+
