@@ -1,6 +1,6 @@
 #include <REGX52.H>
 	
-void Delay (unsigned int xms)  // �ӳ�1s
+void Delay (unsigned int xms)  // ÑÓ³Ù1s
 {
 	unsigned char i, j;
 	while(xms--)
