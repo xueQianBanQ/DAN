@@ -52,7 +52,7 @@ void MatrixLED_ShowColumn(unsigned char Column, unsigned char Data)
 
 //}
 
-////µÚÒ»ÖÖ°®ĞÄ
+////ç¬¬ä¸€ç§çˆ±å¿ƒ
 //void main()
 //{
 //	SCK = 0;
@@ -72,7 +72,7 @@ void MatrixLED_ShowColumn(unsigned char Column, unsigned char Data)
 
 //}
 
-////Ğ¡°®ĞÄ
+////å°çˆ±å¿ƒ
 //void main()
 //{
 //	SCK = 0;
@@ -91,7 +91,7 @@ void MatrixLED_ShowColumn(unsigned char Column, unsigned char Data)
 //}
 
 
-////Á½¸öĞ¡°®ĞÄ
+////ä¸¤ä¸ªå°çˆ±å¿ƒ
 //void main()
 //{
 //	SCK = 0;
